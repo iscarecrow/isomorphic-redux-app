@@ -8,6 +8,8 @@ import CounterPage from "./containers/CounterPage";
 import RedditPage from "./containers/RedditPage";
 import TodoPage from "./containers/TodoPage";
 
+import NewSingleGoods from "./containers/NewSingleGoods";
+
 //Redux Dumb
 import HomePage from "./components/Home";
 import AboutPage from "./components/About";
@@ -20,6 +22,7 @@ export default (
       <Route path="todo" component={TodoPage} />
       <Route path="counter" component={CounterPage} />
       <Route path="about" component={AboutPage} />
+      <Route path="a" component={NewSingleGoods} />
       <Route path="*" component={error404}/>
   </Route>
 );

@@ -1,5 +1,5 @@
 import express from 'express';
-
+import proxy from 'express-http-proxy';
 import webpack from 'webpack';
 import webpackConfig from '../../webpack.config';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -41,7 +41,14 @@ if(process.env.NODE_ENV !== 'production'){
   const compiler = webpack(webpackConfig);
   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
   app.use(webpackHotMiddleware(compiler));
-}else{
+}else{ 
+
+  app.use('/napi/*', proxy('http://www.duitang.com', {
+    forwardPath: function(req, res) {
+      return req.originalUrl;
+    }
+  }));
+
   app.use('/static', express.static(__dirname + '/../../dist'));
 }
 
