@@ -5,7 +5,7 @@ import * as fetchInventoryByIdsActions from '../actions/fetchInventoryByIds';
 import fetch from '../lib/isomorphic-fetch';
 import DtTools from '../utils/dtTools';
 import * as api from '../constants/ApiServer';
-// import SwiperBanner from '../components/SwiperBanner';
+import SwiperBanner from '../components/SwiperBanner';
 import NewSingleGoodsItem from '../components/NewSingleGoodsItem';
 
 if ( 'undefined' !== typeof window ) {
@@ -63,7 +63,7 @@ class NewSingleGoods extends Component {
       <li className="cp-nsgoods-item" key={i}>
         <div className="pg-new-single-goods">
           <div className="pg-new-single-goods-time">{item.addTime.year}年{item.addTime.mouth}月{item.addTime.date}日 {item.addTime.day}</div>
-          {item.bannerData.object_list.length<0 ? <SwiperBanner data={item.bannerData}/> : null}
+          {item.bannerData.object_list.length>0 ? <SwiperBanner data={item.bannerData}/> : null}
           <div className="blackTop"></div>
           <NewSingleGoodsItem data={item.goodsData}/>
         </div>
