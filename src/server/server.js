@@ -39,15 +39,14 @@ const renderFullPage = (html, initialState) => {
 
 if(process.env.NODE_ENV !== 'production'){
   const compiler = webpack(webpackConfig);
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
-  app.use(webpackHotMiddleware(compiler));
-}else{ 
-
   app.use('/napi/*', proxy('http://www.duitang.com', {
     forwardPath: function(req, res) {
       return req.originalUrl;
     }
   }));
+  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
+  app.use(webpackHotMiddleware(compiler));
+}else{ 
 
   app.use('/static', express.static(__dirname + '/../../dist'));
 }

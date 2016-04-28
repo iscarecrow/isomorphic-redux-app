@@ -3,11 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as fetchInventoryByIdsActions from '../actions/fetchInventoryByIds';
 import fetch from '../lib/isomorphic-fetch';
-// import DtSdk from '../utils/dtSdk';
 import DtTools from '../utils/dtTools';
 import * as api from '../constants/ApiServer';
 // import SwiperBanner from '../components/SwiperBanner';
 import NewSingleGoodsItem from '../components/NewSingleGoodsItem';
+
+if ( 'undefined' !== typeof window ) {
+  require('../utils/dtSdk');
+}
 
 class NewSingleGoods extends Component {
   constructor(props) {
@@ -15,16 +18,13 @@ class NewSingleGoods extends Component {
     this.itemList = [];
   }
   componentDidMount () {
+    console.log(DtSdk.VERSION);
     this._loadBannerFromServer();
-    // let ids = '9528,9529,9530,9531,9532,9533,9534,9535,9536,9537,9538,9526,9527'
-    // const { fetchInventoryByIds } = this.props;
-    // fetchInventoryByIds(ids, 0);
 
-
-    // DtSdk.ready(() => {
+    DtSdk.ready(() => {
     //   SetNavigationShoppingCar();
-    //   DtSdk.titleChange({'title': '每日上新'});
-    // });
+      DtSdk.titleChange({'title': '每日上新'});
+    });
   }
   _loadBannerFromServer() {
     // 获取banner数据
@@ -63,7 +63,7 @@ class NewSingleGoods extends Component {
       <li className="cp-nsgoods-item" key={i}>
         <div className="pg-new-single-goods">
           <div className="pg-new-single-goods-time">{item.addTime.year}年{item.addTime.mouth}月{item.addTime.date}日 {item.addTime.day}</div>
-          {item.bannerData.object_list.length>0 ? <SwiperBanner data={item.bannerData}/> : null}
+          {item.bannerData.object_list.length<0 ? <SwiperBanner data={item.bannerData}/> : null}
           <div className="blackTop"></div>
           <NewSingleGoodsItem data={item.goodsData}/>
         </div>
