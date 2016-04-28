@@ -3,9 +3,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as fetchInventoryByIdsActions from '../actions/fetchInventoryByIds';
 import fetch from '../lib/isomorphic-fetch';
+// import DtSdk from '../utils/dtSdk';
 import DtTools from '../utils/dtTools';
 import * as api from '../constants/ApiServer';
-
+// import SwiperBanner from '../components/SwiperBanner';
 import NewSingleGoodsItem from '../components/NewSingleGoodsItem';
 
 class NewSingleGoods extends Component {
@@ -14,10 +15,11 @@ class NewSingleGoods extends Component {
     this.itemList = [];
   }
   componentDidMount () {
-    // this._loadBannerFromServer();
-    let ids = '9528,9529,9530,9531,9532,9533,9534,9535,9536,9537,9538,9526,9527'
-    const { fetchInventoryByIds } = this.props;
-    fetchInventoryByIds(ids, 0);
+    this._loadBannerFromServer();
+    // let ids = '9528,9529,9530,9531,9532,9533,9534,9535,9536,9537,9538,9526,9527'
+    // const { fetchInventoryByIds } = this.props;
+    // fetchInventoryByIds(ids, 0);
+
 
     // DtSdk.ready(() => {
     //   SetNavigationShoppingCar();
