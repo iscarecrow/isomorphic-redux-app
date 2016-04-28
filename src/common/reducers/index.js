@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerStateReducer } from 'redux-router';
-import undoable from 'redux-undo';
+// import undoable from 'redux-undo';
 
 import user from './user';
-import counter from './counter';
-import layout from './layout';
-import todos from './todos';
+// import counter from './counter';
+// import layout from './layout';
+// import todos from './todos';
 import version from './version';
 
 
@@ -30,16 +30,18 @@ import ShoprankListData from './shoprankList';
   // ShoprankListData: ShoprankListData,
 
 
-import { selectedReddit, postsByReddit } from './reddit';
+// import { selectedReddit, postsByReddit } from './reddit';
+
+// counter : undoable(counter),
+// layout : undoable(layout),
+// todos : undoable(todos),
+// selectedReddit : undoable(selectedReddit),
+// postsByReddit : undoable(postsByReddit),
+
 
 const rootReducer = combineReducers({
   user : user,
   version : version,
-  counter : undoable(counter),
-  layout : undoable(layout),
-  todos : undoable(todos),
-  selectedReddit : undoable(selectedReddit),
-  postsByReddit : undoable(postsByReddit),
   NewSingleGoodsData: NewSingleGoodsData,
   router : routerStateReducer
 });

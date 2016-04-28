@@ -17,7 +17,7 @@ function receiveInventoryByIds(json, moredata={}) {
   };
 }
 
-function fetchInventoryByIdsData(ids,moredata) {
+function fetchInventoryByIdsData(ids='',moredata={}) {
   return dispatch => {
     dispatch(requestInventoryByIds());
     return DtFetch({

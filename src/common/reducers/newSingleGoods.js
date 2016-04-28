@@ -6,7 +6,7 @@ import NewSingleGoodsMockData from '../mock/NewSingleGoodsData';
 const limit = 10;
 
 const initialState = {
-  object_list:[],
+  object_list:[]
 };
 
 // 渲染数据
@@ -20,7 +20,6 @@ export default function NewSingleGoodsData(state = initialState, action) {
         isLoading: 1,
       });
     case RECEIVE_INVENTORY_BY_IDS:
-
       let _currentItems = [];
       action.object_list.map((elem,i) => {
         elem.pictures[0] = DtTools.dtImageTrans(elem.pictures[0], true, 400, 400, 'c');
@@ -40,6 +39,8 @@ export default function NewSingleGoodsData(state = initialState, action) {
       }
       listCache.push(goodsItem);
       index ++;
+      window.listCache = listCache;
+      console.log(listCache)
       return  Object.assign({}, state, {
         object_list: listCache,
         index: index,

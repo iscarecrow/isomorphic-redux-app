@@ -18,7 +18,6 @@ class NewSingleGoods extends Component {
     this.itemList = [];
   }
   componentDidMount () {
-    console.log(DtSdk.VERSION);
     this._loadBannerFromServer();
 
     DtSdk.ready(() => {
